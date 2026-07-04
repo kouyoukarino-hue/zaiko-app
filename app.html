@@ -354,12 +354,13 @@
       });
       document.getElementById('logCount').textContent =
         '実数「' + res.newQuantity + '」で確定しました（差異: ' + res.diff + '）。';
-      if (itemIndex[currentItem.barcode]) {
-        itemIndex[currentItem.barcode].systemQuantity = res.newQuantity;
-      }
+      // 画面表示をその場で更新（次にスキャンし直さなくても正しい数字が見える）
+      document.getElementById('sysQtyDisplay').textContent = res.newQuantity;
+      document.getElementById('c_qty').textContent = res.newQuantity + ' 個';
       currentItem = null;
       document.getElementById('itemCard').style.display = 'none';
       refreshProgress();
+      loadItemIndex(); // クラウド側の最新値で全件キャッシュを取り直す（Wi-Fi前提、224件程度なら数秒）
     } catch (err) {
       showError(err.message);
     }
