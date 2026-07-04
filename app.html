@@ -313,7 +313,8 @@
     document.getElementById('c_qty').textContent = res.systemQuantity + ' 個';
     document.getElementById('sysQtyDisplay').textContent = res.systemQuantity;
     qty = res.systemQuantity;
-    document.getElementById('adjustInput').value = qty;
+    document.getElementById('adjustInput').value = '';
+    document.getElementById('adjustInput').focus();
   }
 
   // ===== 数値操作 =====
